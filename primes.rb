@@ -1,12 +1,5 @@
 #! /usr/bin/env ruby
 
-# require 'prime'
-#
-# # determine prime numbers from 1-1000 and print them
-# Prime.each(1000) do |prime|
-#   puts prime
-# end
-
 # create array to store prime numbers
 primes = Array.new
 
