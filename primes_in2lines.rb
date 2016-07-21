@@ -2,4 +2,4 @@
 
 require 'prime'
 
-puts Prime.entries(1000)
+puts Prime.entries(1000).join(", ")
