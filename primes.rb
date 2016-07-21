@@ -4,10 +4,12 @@
 primes = Array.new
 
 # create a list of numbers 1 to 1000
-list = (1..1000)
+# list = (1..1000)
 
 # check for prime numbers in list
-list.each do |i|
+# list.each do |i|
+
+for i in 1..1000
   # tests if item is prime
   case
     when i <= 1
@@ -37,5 +39,6 @@ list.each do |i|
         end
   end
 end
-puts "List of primes from 1 to 1000"
-puts primes
+
+# print out comma-separated list of primes
+puts primes.join(", ")
