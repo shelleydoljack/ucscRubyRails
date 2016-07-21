@@ -9,17 +9,13 @@ list = (1..1000)
 # check for prime numbers in list
 list.each do |i|
   # tests if item is prime
-  # puts "number to be evaluated is #{i}"
   case
     when i <= 1
-      # puts "#{i} is not prime"
       next
     when i == 2
-      # puts "#{i} is prime"
       # add number to primes array
       primes.push(i)
     when i % 2 == 0
-      # puts "#{i} is not prime"
       next
     when i % 2 == 1 # odd number
       # assume number is prime until it isn't
@@ -37,7 +33,6 @@ list.each do |i|
       # number is prime unless it was previously found to be evenly divisible, e.g. is_prime = "no"
       if is_prime == "yes"
         then
-          # puts "#{i} is prime"
           primes.push(i) # add number to primes list
         end
   end
