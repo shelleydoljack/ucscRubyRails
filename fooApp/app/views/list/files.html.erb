@@ -1,2 +1,6 @@
-<h1>List#files</h1>
-<p>Find me in app/views/list/files.html.erb</p>
+<h1>List files</h1>
+<p>
+  <% for file in @files %>
+		file name is: <%= file %>
+  <% end %>
+</p>
