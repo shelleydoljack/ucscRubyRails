@@ -14,7 +14,6 @@
   </div>
   <div id="columns">
     <div id="side">
-      <%= render("date_time/index") %>
       <ul>
         <li><a href="http://www....">Home</a></li>
         <li><a href="http://www..../faq">Questions</a></li>
@@ -24,6 +23,9 @@
     </div>
     <div id="main">
       <%= yield %>
+    </div>
+    <div id="side-bottom">
+      <p><%= render("date_time/index") %></p>
     </div>
   </div>
 </body>
