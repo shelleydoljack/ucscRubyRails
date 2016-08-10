@@ -7,6 +7,10 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 Rails.application.routes.draw do
+  get 'date_time/date'
+
+  get 'date_time/time'
+
   get 'store/index'
 
   resources :products
