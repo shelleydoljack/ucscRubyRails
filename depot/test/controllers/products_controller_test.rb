@@ -31,6 +31,11 @@ class ProductsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get a form with 4 fields on product creation" do
+    get :new
+    assert_select 'form div.field', 4
+  end
+
   test "should create product" do
     assert_difference('Product.count') do
       post :create, product: @update
@@ -38,8 +43,6 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to product_path(assigns(:product))
   end
-
-  # ...
 
   test "should show product" do
     get :show, id: @product
