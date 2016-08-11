@@ -71,4 +71,10 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to products_path
   end
+
+  test "should see banner and sidebar on show product page" do
+    get :show, id: @product
+    assert_select '#side'
+    assert_select '#banner'
+  end
 end
