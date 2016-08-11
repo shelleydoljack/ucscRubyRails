@@ -56,7 +56,10 @@ class ProductsControllerTest < ActionController::TestCase
     assert_redirected_to product_path(assigns(:product))
   end
 
-  # ...
+  test "should get a form with 4 fields when update product" do
+    get :edit, id: @product
+    assert_select 'form div.field', 4
+  end
 
   test "should destroy product" do
     assert_difference('Product.count', -1) do
