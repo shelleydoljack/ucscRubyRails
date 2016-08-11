@@ -21,3 +21,13 @@
 
 en:
   hello: "Hello world"
+
+de:
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        unit: "€"
