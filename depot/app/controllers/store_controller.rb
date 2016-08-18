@@ -7,7 +7,9 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 class StoreController < ApplicationController
+  include SessionCounter
   def index
     @products = Product.order(:title)
+    @counter = increment_counter
   end
 end
