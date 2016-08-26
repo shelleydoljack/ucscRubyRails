@@ -15,27 +15,33 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   # cart, and check out, filling in their details on the checkout form. When
   # they submit, an order is created containing their information, along with a
   # single line item corresponding to the product they added to their cart.
-  
+
   test "buying a product" do
     LineItem.delete_all
     Order.delete_all
     ruby_book = products(:ruby)
 
+    # A user goes to the index page.
     get "/"
     assert_response :success
     assert_template "index"
-    
+
+    # They select a product, adding it to their cart
     xml_http_request :post, '/line_items', product_id: ruby_book.id
-    assert_response :success 
-    
+    assert_response :success
+
     cart = Cart.find(session[:cart_id])
     assert_equal 1, cart.line_items.size
     assert_equal ruby_book, cart.line_items[0].product
-    
+
+    # and check out,
     get "/orders/new"
     assert_response :success
     assert_template "new"
-    
+
+    # filling in their details on the checkout form. When
+    # they submit, an order is created containing their information, along with a
+    # single line item corresponding to the product they added to their cart.
     post_via_redirect "/orders",
                       order: { name:     "Dave Thomas",
                                address:  "123 The Street",
@@ -45,20 +51,25 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_template "index"
     cart = Cart.find(session[:cart_id])
     assert_equal 0, cart.line_items.size
-    
+
+    # Verify that the order got created.
     orders = Order.all
     assert_equal 1, orders.size
     order = orders[0]
-    
+
+    # Test against the information created in the order.
+    # N.B. We shouldn't hardcode fixture data; book does it wrong.
     assert_equal "Dave Thomas",      order.name
     assert_equal "123 The Street",   order.address
     assert_equal "dave@example.com", order.email
     assert_equal "Check",            order.pay_type
-    
+
     assert_equal 1, order.line_items.size
     line_item = order.line_items[0]
+    # get the singular line item that was created
     assert_equal ruby_book, line_item.product
 
+    # mail order received notification
     mail = ActionMailer::Base.deliveries.last
     assert_equal ["dave@example.com"], mail.to
     assert_equal 'Sam Ruby <depot@example.com>', mail[:from].value
