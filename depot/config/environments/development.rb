@@ -1,3 +1,11 @@
+#---
+# Excerpted from "Agile Web Development with Rails",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
+#---
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -16,6 +24,21 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  # Don't actually send emails
+  config.action_mailer.delivery_method = :test
+  #
+  # Alternate configuration example, using gmail:
+  #   config.action_mailer.delivery_method = :smtp
+  #   config.action_mailer.smtp_settings = {
+  #     address:        "smtp.gmail.com",
+  #     port:           587, 
+  #     domain:         "domain.of.sender.net",
+  #     authentication: "plain",
+  #     user_name:      "dave",
+  #     password:       "secret",
+  #     enable_starttls_auto: true
+  #   } 
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -26,10 +49,6 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
-  # yet still be able to expire them through the digest params.
-  config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
